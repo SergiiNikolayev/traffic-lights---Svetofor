@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Домашняя работа</title>
+    <script src="jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+    <script>
+        var cnt = 1;
+        $(document).ready(function () {
+
+            var delayOne = 3000;
+            var delayTwo = 500;
+            var loopDelay = delayTwo * 10 + delayOne * 2;
+
+
+            var red = $(".red");
+            var yellow = $(".yellow");
+            var green = $(".green");
+            var span = $(".red>span");
+            var r = {
+                backgroundColor: '#DB2020'
+            };
+            var y = {
+                backgroundColor: '#D6E135'
+            };
+            var g = {
+                backgroundColor: '#239F24'
+            };
+            var inactive = {
+                backgroundColor: '#686860'
+            };
+
+
+            function colors() {
+                red.animate(r, delayTwo).delay(delayOne).animate(inactive, delayTwo, function () {
+                    yellow.animate(y, delayTwo).delay(delayTwo).animate(inactive, delayTwo, function () {
+                        green.animate(g, delayTwo).delay(delayOne).animate(inactive, delayTwo, function () {
+                            yellow.animate(y, delayTwo).delay(delayTwo).animate(inactive, delayTwo);
+                        });
+                    });
+                });
+            };
+
+            function showTimer() {
+                cnt++;
+                span.text(cnt);
+            };
+            //setInterval(showTimer, 1000);
+
+            colors();
+            setInterval(colors, loopDelay);
+        });
+
+    </script>
+    <style>
+        .main {
+            border: 2px solid black;
+            background-color: rgba(7, 7, 7, 0.5);
+            padding: 2px;
+            margin: auto;
+            width: 114px;
+            border-radius: 5px;
+        }
+
+        .wrap {
+        }
+
+        .border {
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .inactive {
+            background-color: #686860;
+        }
+
+        span {
+            position: relative;
+            top: 38%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="wrap">
+        <div class="red inactive border"><span></span></div>
+        <div class="yellow inactive border"></div>
+        <div class="green inactive border"></div>
+    </div>
+</div>
+</body>
+</html>
